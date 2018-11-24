@@ -1,7 +1,12 @@
 <p>Images</p>
 
 <div class="image-grid">
+
+
 <% @images.each do |img|%>
-<%= image_tag img.image_datafile %>
-<%end%>
+<div class="grid-item">
+<%= image_tag img.image_datafile.variant(resize: '360x360x') %>
+</div>
+<% end %>
+
 </div>

@@ -3,5 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .image-grid {
-  background-color: aqua;
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 360px 360px 360px;
+
+  .grid-item {
+    background-color: lightgray;
+    border: 1px solid rgba($color: #000000, $alpha: 0.8);
+    height: 360px;
+    width: 360px;
+  }
 }
