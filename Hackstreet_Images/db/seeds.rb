@@ -14,8 +14,9 @@ module ImageSeeding
   
     repetitions.times do
       length = rand(10) + 1
-      res += rand(36**length).to_s(36)
+      res += rand(36**length).to_s(36) + " "
     end
+    res.strip
   
     return res
   end

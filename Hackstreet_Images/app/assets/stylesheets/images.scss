@@ -8,9 +8,58 @@
   grid-template-columns: 360px 360px 360px;
 
   .grid-item {
-    background-color: lightgray;
-    border: 1px solid rgba($color: #000000, $alpha: 0.8);
+    background-color: #eee;
+    border: 1px solid rgba($color: #555, $alpha: 0.1);
     height: 360px;
     width: 360px;
+    position: relative;
+
+    $hovercolor: rgba(
+      $color: #efefef,
+      $alpha: 0.7
+    );
+
+    &:hover {
+      background-color: $hovercolor;
+      .hovering-author {
+        display: block;
+      }
+      .hovering-likes {
+        display: block;
+      }
+    }
+
+    .hovering-author {
+      position: absolute;
+      top: -1px;
+      width: 100%;
+      z-index: 1;
+
+      display: none;
+      background-color: $hovercolor;
+    }
+
+    .hovering-likes {
+      position: absolute;
+      bottom: -1px;
+      width: 100%;
+      z-index: 1;
+
+      display: none;
+      background-color: $hovercolor;
+    }
+
+    .centering-container {
+      width: 100%;
+      height: 100%;
+
+      position: absolute;
+      z-index: 0;
+
+      // center image
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }

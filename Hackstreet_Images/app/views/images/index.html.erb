@@ -4,9 +4,22 @@
 
 
 <% @images.each do |img|%>
-<div class="grid-item">
-<%= image_tag img.image_datafile.variant(resize: '360x360x') %>
-</div>
+  
+  <div class="grid-item">
+    <div class="hovering-author">
+      <%= img.name.to_s + " by author name" %>
+    </div>
+    
+    <%= link_to(img) do %>
+      <div class="centering-container">
+        <%= image_tag img.image_datafile.variant(resize: '360x360x'), class: "centered" %>
+      </div>
+    <% end %>
+
+
+    <div class="hovering-likes">321 likes</div>
+  </div>
+  
 <% end %>
 
 </div>
