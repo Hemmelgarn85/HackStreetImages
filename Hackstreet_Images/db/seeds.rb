@@ -33,8 +33,8 @@ module ImageSeeding
     
       img_url = random_img_host + w.to_s + '/' + h.to_s
       downloaded_img = open(img_url)
-      Image.create!(name: ImageSeeding.rand_string(3), description: "Lorem ipsum" + ImageSeeding.rand_string(6))
-      Image.last.image_datafile.attach(io: downloaded_img, filename: "randomName")
+      Image.create!(name: ImageSeeding.rand_string(1), description: "Lorem ipsum" + ImageSeeding.rand_string(6))
+      Image.last.image_datafile.attach(io: downloaded_img, filename: "someName")
     end
   end
 end
