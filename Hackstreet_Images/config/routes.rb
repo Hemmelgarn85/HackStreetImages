@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  devise_for :users
   resources :images, :except => [:create]
   # resources :images
   # get '/images', to: 'images#index', as: 'images'

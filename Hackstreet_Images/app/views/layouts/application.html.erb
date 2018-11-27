@@ -36,9 +36,11 @@
   </head>
 
   <body>
+    <%= render 'layouts/alerts' %>
 
     <div class="container">
-    <%= yield %>
+      <%= render 'layouts/header' %>
+      <%= yield %>
     </div> <!-- /container -->
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
