@@ -1,12 +1,17 @@
-<% if current_user %>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to "LOGO_HERE", root_path, id: "placeholder_logo" %>
+    </div>
 
-
-<%= link_to 'Sign out',  destroy_user_session_path,
-            method: :delete %>
-
-<% else %>
-
-<%= link_to 'Sign in', new_user_session_path %>
-<%= link_to 'Sign up', new_user_registration_path %>
-
-<% end %>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "Feed", images_path %></li>
+      <% if current_user %>
+	    <li><%= link_to 'Sign out',  destroy_user_session_path, method: :delete %></li>
+      <% else %>
+	    <li><%= link_to 'Sign in', new_user_session_path %></li>
+	    <li><%= link_to 'Sign up', new_user_registration_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
