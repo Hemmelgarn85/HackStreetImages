@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
   devise_for :users
+
+  get '/home', to: 'users#home', as: 'home'
+  get '/user/:id', to: 'users#show'
+
   resources :images, :except => [:create]
   # resources :images
   # get '/images', to: 'images#index', as: 'images'
