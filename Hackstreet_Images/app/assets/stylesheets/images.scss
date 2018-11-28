@@ -9,13 +9,13 @@
 
   .grid-item {
     background-color: #eee;
-    border: 1px solid rgba($color: #555, $alpha: 0.1);
+    // border: 1px solid rgba($color: #555, $alpha: 0.1);
     height: 360px;
     width: 360px;
     position: relative;
 
     $hovercolor: rgba(
-      $color: #efefef,
+      $color: #fdfdfd,
       $alpha: 0.7
     );
 

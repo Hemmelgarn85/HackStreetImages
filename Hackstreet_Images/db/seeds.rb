@@ -26,10 +26,10 @@ module ImageSeeding
   
     20.times do |x|
       #random width: 100-1500
-      w = rand(1..15) * 100
+      w = rand(5..15) * 100
     
       #random height: 100-800
-      h = rand(1..8) * 100
+      h = rand(3..10) * 100
     
       img_url = random_img_host + w.to_s + '/' + h.to_s
       downloaded_img = open(img_url)

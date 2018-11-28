@@ -9,8 +9,12 @@ class ImagesController < ApplicationController
   end
 
   def create
-    @image = Image.new(user_post_params)
-
+    if user_signed_in?
+      @image = current_user.images.build(user_post_params)
+    else
+      @image = Image.new(user_post_params)
+    end
+    
     if @image.save
       redirect_to @image
     else

@@ -1,0 +1,22 @@
+<div class="image-grid">
+
+<% image_list.each do |img|%>
+  
+  <div class="grid-item">
+    
+    <div class="hovering-author">
+      <%= img.name.to_s %> <%= " by author name" if with_author %>
+    </div>
+    
+    <%= link_to(img) do %>
+      <div class="centering-container">
+        <%= image_tag img.image_datafile.variant(resize: '360x360x'), class: "centered" %>
+      </div>
+    <% end %>
+
+    <div class="hovering-likes">321 likes</div>
+  </div>
+  
+<% end %>
+
+</div>
