@@ -10,11 +10,13 @@ class ImagesController < ApplicationController
 
   def create
     if user_signed_in?
+      #add an image to current user
       @image = current_user.images.build(user_post_params)
     else
+      #post image anonymously without connection to a user
       @image = Image.new(user_post_params)
     end
-    
+
     if @image.save
       redirect_to @image
     else
