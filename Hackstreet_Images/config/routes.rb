@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   get '/home', to: 'users#home', as: 'home'
   get '/user/:id', to: 'users#show'
+  #added Michael Hemmelgarn
+  resource :user, only: [:edit] do
+    collection do
+      patch 'update_password'
+    end
+  end
 
   resources :images, :except => [:create]
   # resources :images
