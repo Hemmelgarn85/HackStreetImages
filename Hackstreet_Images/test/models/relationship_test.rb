@@ -5,8 +5,8 @@ class RelationshipTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-    @relationship = Relationship.new(follower_id: users(:user1).id,
-                                     followed_id: users(:user2).id)
+    @relationship = Relationship.new(follower_id: users(:user_one).id,
+                                     followed_id: users(:user_two).id)
   end
 
   test "should be valid" do
