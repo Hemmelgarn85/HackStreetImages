@@ -1,9 +1,9 @@
 module UsersHelper
-    def profile_pic_for(user)
-        if true
-            image_tag("defaultuser.png", alt: user.username, class: "profile-pic") 
+    def display_avatar(user)
+        if user.profile_image_datafile.attached?
+          user.profile_image_datafile.variant(resize: '150x150x')
         else
-            # do nothing for now, we don't have images working yet
+          'defaultuser.png'
         end
     end
 end
