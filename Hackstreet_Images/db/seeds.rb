@@ -6,37 +6,64 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-module ImageSeeding
+module RandomizedData
   require 'open-uri'
 
-  def ImageSeeding.rand_string repetitions
+  def RandomizedData.rand_string repetitions
     res = ""
   
     repetitions.times do
-      length = rand(10) + 1
+      length = rand(4..15)
       res += rand(36**length).to_s(36) + " "
     end
     res.strip
-  
-    return res
   end
   
-  def ImageSeeding.create_images
+  def RandomizedData.email num
+    "user" + num.to_s + "@test.com"
+  end
+
+  def RandomizedData.get_random_image
     random_img_host = 'https://picsum.photos/'
+
+    #random width: 100-1500
+    w = rand(5..15) * 100
+    
+    #random height: 100-800
+    h = rand(3..15) * 100
   
-    20.times do |x|
-      #random width: 100-1500
-      w = rand(5..15) * 100
+    img_url = random_img_host + w.to_s + '/' + h.to_s
+    downloaded_img = open(img_url)
+  end
+
+  def RandomizedData.create_image with_user_id=nil
     
-      #random height: 100-800
-      h = rand(3..10) * 100
-    
-      img_url = random_img_host + w.to_s + '/' + h.to_s
-      downloaded_img = open(img_url)
-      Image.create!(name: ImageSeeding.rand_string(1), description: "Lorem ipsum" + ImageSeeding.rand_string(6))
-      Image.last.image_datafile.attach(io: downloaded_img, filename: "someName")
+    rand_img = RandomizedData.get_random_image
+    imgObj = Image.new(name: RandomizedData.rand_string(1), description: "Lorem ipsum" + RandomizedData.rand_string(6))
+    imgObj.image_datafile.attach(io: rand_img, filename: "someName")
+    imgObj.user_id = with_user_id if !with_user_id.nil?
+    imgObj.save
+  end
+
+  def RandomizedData.create_random_user num
+    # Devise.include_helpers(Devise::Controllers)
+    user = User.new(email: RandomizedData.email(num), username: RandomizedData.rand_string(1), password: 'password', password_confirmation: 'password')
+    user.save
+
+    #create random user's images. upto 5 images per user
+    rand_num = rand 5
+    rand_num.times do
+      RandomizedData.create_image user.id
     end
+    # rand_img = RandomizedData.get_random_image
+    # imgObj = Image.new(name: RandomizedData.rand_string(1), description: "Lorem ipsum" + RandomizedData.rand_string(6))
+    # imgObj.image_datafile.attach(io: rand_img, filename: "someName")
+    # imgObj.user_id = user.id
+    # imgObj.save
   end
 end
 
-ImageSeeding.create_images
+10.times do RandomizedData.create_image end
+5.times do |iter|
+  RandomizedData.create_random_user iter
+end
