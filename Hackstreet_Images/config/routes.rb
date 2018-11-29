@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
-  get '/home', to: 'users#home', as: 'home'
-  get '/user/:id', to: 'users#show'
+  get '/user/:id', to: 'users#show', as: 'show'
   #added Michael Hemmelgarn
   resource :user, only: [:edit] do
     collection do
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/image/new', to: 'images#new', as: 'image_upload'
   resources :images, :except => [:create]
   # resources :images
   # get '/images', to: 'images#index', as: 'images'
