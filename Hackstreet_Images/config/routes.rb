@@ -1,16 +1,26 @@
 Rails.application.routes.draw do
   get 'comment_controller/Comments'
   devise_for :users, :controllers => { registrations: 'registrations' }
-  get '/home', to: 'users#home', as: 'home'
-  get '/user/:id', to: 'users#show'
+  get '/user/:id', to: 'users#show', as: 'show'
+  #added Michael Hemmelgarn
+  resource :user, only: [:edit] do
+    collection do
+      patch 'update_password'
+    end
+  end
 
+<<<<<<< HEAD
   resources :images, :except => [:create] do
     resources :comments
   end
+=======
+  get '/image/new', to: 'images#new', as: 'image_upload'
+  resources :images, :except => [:create]
+>>>>>>> 10211d11adfb48006954d2fdc5b3a1738a348699
   # resources :images
   # get '/images', to: 'images#index', as: 'images'
   post '/create', to: 'images#create', as: 'create'
-  root 'welcome#index'
+  root 'images#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 

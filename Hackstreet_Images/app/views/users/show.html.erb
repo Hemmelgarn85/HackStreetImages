@@ -7,35 +7,37 @@
 <div class="container-fluid">
   <div class="profile-row">
     <div class="col-xs-2 col-xs-push-2 img">
-      <%= image_tag 'defaultuser.png', class: 'circle-profile-pic'%>
+      <%= image_tag display_avatar(@user)%>
     </div>
     <div class="col-xs-6 col-xs-push-2">
       <div class="row">
         <div class="col-xs-12 about">
           <p>
             <span style="font-size:36px">
-              <%= "@gtschieder" %><br>
+              <%= "@#{@user.username}" %><br>
             </span>
             <strong>Posts:</strong>
             <%= 10 %>
             <a href=<%= "#" %>>
-              <strong>&nbsp;&nbsp;&nbsp;&nbsp;Followers:</strong>
+              <strong>Followers:</strong>
               <%= 123 %>
             </a>
             <a href=<%= "#" %>>
-              <strong>&nbsp;&nbsp;&nbsp;&nbsp;Following:</strong>
+              <strong>Following:</strong>
               <%= 123 %><br>
             </a>
-            <strong><%= "Graham Tschieder" %></strong>
-            <%= "I'm a user, and this is my bio." %>
+            <strong><%= "#{@user.full_name}" %></strong>
+            <%= "#{@user.bio}" %>
           </p>
 
-          <% if current_user %>
+          <% if user_signed_in? %>
             <div class="row">
-              <% if current_user %>
-                <%= link_to 'New Post', '#' %> |
-                <%= link_to 'Edit Account', "#" %> |
-                <%= link_to 'Delete Account', @user, method: :delete, data: { confirm: 'Are you sure you want to do this? Action cannot be undone.' } %>
+              <% if @user == current_user %>
+                <%= link_to 'New Post', image_upload_path %> |
+                <%= link_to 'Edit Info', edit_user_registration_path %> |
+                <%= link_to 'Delete Account', registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %>
+              <% else %>
+                <%= link_to 'Follow', '#' %>
               <% end %>
             </div>
           <% end %>
@@ -44,3 +46,7 @@
     </div>
   </div>
 </div>
+
+<hr>
+
+<%= render :partial => 'shared/images_grid', :locals => { image_list: @user.images, with_author: false } %>
