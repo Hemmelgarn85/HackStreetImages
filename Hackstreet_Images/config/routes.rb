@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
-  get '/user/:id', to: 'users#show', as: 'show'
+  get '/user/:username', to: 'users#show'
   #added Michael Hemmelgarn
   resource :user, only: [:edit] do
     collection do
