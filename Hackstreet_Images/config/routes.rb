@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :images, :except => [:create] do
-    resources :comments
+    resources :comments #, only: [:create, :index, :destroy]
   end
   get '/image/new', to: 'images#new', as: 'image_upload'
   resources :images, :except => [:create]
