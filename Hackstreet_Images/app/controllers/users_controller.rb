@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     #File Created By Michael Hemmelgarn
+    include UsersHelper
+
     def home
         if user_signed_in?
             @user = current_user
@@ -25,8 +27,25 @@ class UsersController < ApplicationController
       end
     end
 
+    def set_user_else_redirect
+      @user = resolve_correct_user params[:username]
+      
+      if @user == :empty
+        flash[:invalid_user_error] = "Could not display this user"
+        redirect_to root_path
+      end
+    end
+
     def show
-      @user = User.where(username: params[:username]).first
+      set_user_else_redirect
+    end
+
+    def followers
+      set_user_else_redirect
+    end
+
+    def following
+      set_user_else_redirect
     end
 
     private

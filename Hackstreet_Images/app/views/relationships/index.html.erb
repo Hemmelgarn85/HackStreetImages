@@ -13,12 +13,10 @@
             <strong>Posts:</strong>
             <%= 10 %>
             <%= link_to root_path %>
-              <strong>Followers:</strong>
-              <%= @user.followers %>
-            </a>
-            <%= link_to root_path %>
-              <strong>Following:</strong>
-              <%= @user.followeds %><br>
+            <strong>Followers:</strong>
+            <%= link_to "#{@user.followers.length}", @user.followers %>
+            <strong>Following:</strong>
+            <%= link_to "#{@user.followeds.length}", @user.followeds %><br>
             <strong><%= "#{@user.full_name}" %></strong>
             <%= "#{@user.bio}" %>
           </p>
@@ -50,3 +48,4 @@
         </p>
     </div>
     <hr>
+<% end %>

@@ -1,3 +1,6 @@
+<%= render :partial => "shared/flash_field", :locals => {:flash => flash} %>
+
 <p>Images</p>
+
 
 <%= render :partial => 'shared/images_grid', :locals => { image_list: @images, with_author: true } %>

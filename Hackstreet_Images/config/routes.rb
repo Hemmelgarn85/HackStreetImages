@@ -3,14 +3,20 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   get '/user/:username', to: 'users#show', as: 'show'
   #added Michael Hemmelgarn
-  resource :user, only: [:edit] do
-    collection do
-      patch 'update_password'
-    end
-  end
+  # resource :user, only: [:edit] do
+  #   collection do
+  #     patch 'update_password'
+  #   end
+  # end
 
+  get '/user/:username/followers', to: 'users#followers', as: 'followers'
+  get '/user/:username/followers', to: 'users#following', as: 'following'
 
-  resources :users
+  # resources :users do
+    # member do
+    #   get :show
+    # end
+  # end
 
   #added Michael Hemmelgarn
   get :search, controller: :search
@@ -21,13 +27,13 @@ Rails.application.routes.draw do
   end
 
   get '/image/new', to: 'images#new', as: 'image_upload'
-  resources :images, :except => [:create]
+  # resources :images, :except => [:create]
   # resources :images
   # get '/images', to: 'images#index', as: 'images'
   post '/create', to: 'images#create', as: 'create'
   root 'images#index', as: 'root'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  
 
 
 end

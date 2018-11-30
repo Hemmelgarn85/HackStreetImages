@@ -1,0 +1,13 @@
+<div>
+You have reached this
+</div>
+
+<%= @user.followers.each do |follower| %>
+    <div>
+        <p>
+            <%= follower.full_name%>
+            <%= follower.username %> <br/>
+        </p>
+    </div>
+    <hr>
+<% end %>
