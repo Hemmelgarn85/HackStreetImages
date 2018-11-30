@@ -16,6 +16,11 @@
     <%= form.file_field :image_datafile %>
   </div>
 
+  <div class="field">
+    <%= form.label :MakePhotoPrivate %>
+    <%= form.check_box :privacy_level %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

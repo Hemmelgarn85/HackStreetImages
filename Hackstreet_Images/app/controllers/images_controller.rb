@@ -28,8 +28,14 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
   end
 
+
   private
     def user_post_params
-      params.require(:image).permit(:name, :description, :image_datafile)
+      user_params = params.require(:image).permit(:name, :description, :image_datafile)
+      user_params[:privacy_level] = params[:image][:privacy_level].to_i
+      if(user_signed_in?)
+        user_params[:privacy_level] = user_params[:privacy_level]+2
+      end
+      return user_params
     end
 end
