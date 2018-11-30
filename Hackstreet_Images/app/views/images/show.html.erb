@@ -16,12 +16,17 @@
 
 
 <% if user_signed_in? %>
-  <%= form_for @image, url: fav_path(@image), html: {method: "post"} do |f| %>
-    <%=f.submit "favorite", class: "btn-grey" %>
-  <%end%>
-  <%= form_for @image, url: unfav_path(@image), html: {method: "delete"} do |f| %>
-    <%=f.submit "unfavorite", class: "btn-grey" %>
-  <%end%>
+    <% if favorite_check current_user, @image %>
+      <%= form_for @image, url: unfav_path(@image), html: {method: "delete"} do |f| %>
+        <%=f.submit "unfavorite", class: "btn-grey" %>
+      <%end%>
+    <% else %>
+      <%= form_for @image, url: fav_path(@image), html: {method: "post"} do |f| %>
+        <%=f.submit "favorite", class: "btn-grey" %>
+      <%end%>
+    <% end %>
+
+
 <% end %>
 
 <%#Written and implemented by Jalen Soat%>
