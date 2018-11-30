@@ -1,6 +1,9 @@
 <%#Page formatted by Jalen Soat and Graham Tschieder and Nick Nitta%>
 
 <h3 class="imagetitle"><%= @image.name %></h3>
+
+<% if user_has_view_permission(@image, current_user) %>
+
 <div class = "imageframe">
     <%= image_tag @image.image_datafile, :class => "imagedisplay" %>
     <!--<p><%= @image.description %></p!-->
@@ -10,10 +13,6 @@
 <% if user_signed_in? && @image.user_id == current_user.id %>
   <%= button_to "Delete Post", @image, :method => "delete", :class => "btn btn-secondary " %>
 <% end %>
-
-<%flash.each do |name, msg| %>
-    <p><%=msg%></p><br/>
-<%end%>
 
 
 <% if user_signed_in? %>
@@ -30,6 +29,7 @@
 
 <% end %>
 </div>
+
 <%#Written and implemented by Jalen Soat%>
 <div class="container">
     <div class="row">
@@ -74,3 +74,7 @@
         <%end%>
     </div>
 </div>
+
+<%else%>
+   <strong><%= "You must follow this user to view their private images" %></strong>
+<%end%>
