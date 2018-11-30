@@ -1,3 +1,6 @@
+/* Created by Michael Hemmelgarn
+ * Edited by Nicholas Nitta and Jalen Soat
+ */
 /*
  * Co-Authored by Jalen Soat
  * This is a manifest file that'll be compiled into application.css, which will include all the files
@@ -88,6 +91,7 @@ body {
 .post .post-heading {
   height: 95px;
   padding: 20px 15px;
+  margin-left: 5em;
 }
 
 .post .post-heading-2 {
@@ -188,6 +192,15 @@ body {
   padding-left: 20px;
 }
 
+
+.rowsearch {
+  display: flex;
+}
+
+.columnsearch {
+  flex: 50%;
+}
+
 .imagedisplay{
   border-radius: 8px;
   box-shadow: 7px 7px 3px rgba(128, 128, 128, 0.616);
@@ -239,7 +252,7 @@ body {
       }
     }
 
-    }
+  }
  
 
 @font-face {

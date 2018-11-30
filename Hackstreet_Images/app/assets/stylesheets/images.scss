@@ -1,5 +1,5 @@
-// Place all the styles related to the Images controller here.
-// They will automatically be included in application.css.
+// Images controller css
+// Created by Ivan Lavrov
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .image-grid {
@@ -13,7 +13,8 @@
     height: 360px;
     width: 360px;
     position: relative;
-    background-color: hsla(0, 0%, 100%, 0.31);
+    background-color: hsla(0, 0%, 0%, 0);
+    border-color: hsla(0, 0%, 0%, 0);
 
     $hovercolor: rgba(
       $color: #fdfdfd,
@@ -63,4 +64,10 @@
       justify-content: center;
     }
   }
+}
+
+.image-wrapper{
+  background-color: #eee;
+  padding-left: 5em;
+  padding-right: 5em;
 }

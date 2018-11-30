@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
     #before_action :find_image!
   
     def create 
+        # only allow signed in users to comment
         if user_signed_in?
             @image = Image.find(params[:image_id])
             @comment = @image.comments.build(comment_params)

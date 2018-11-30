@@ -1,8 +1,9 @@
 #Created by Michael Hemmelgarn
+# builds a json for use in autocomplete dropdown
 json.users do
   json.array!(@users) do |user|
     json.name user.username
-    json.url user_path(user)
+    json.url show_path(user.username)
   end
 end
 json.images do
