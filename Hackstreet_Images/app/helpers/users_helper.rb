@@ -7,4 +7,13 @@ module UsersHelper
           'defaultuser.jpg'
         end
     end
+
+    def resolve_correct_user name
+      us = User.where(username: name)
+      if us.length == 1
+        return us.first
+      else
+        return :empty
+      end
+    end
 end

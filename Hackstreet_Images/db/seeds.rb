@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#by Ivan Lavrov
 module RandomizedData
   require 'open-uri'
 
@@ -52,7 +53,7 @@ module RandomizedData
 
   def RandomizedData.create_random_user num
     # Devise.include_helpers(Devise::Controllers)
-    user = User.new(email: RandomizedData.email(num), username: RandomizedData.rand_string(1), password: 'password', password_confirmation: 'password')
+    user = User.new(email: RandomizedData.email(num), username: ("user" + num.to_s), password: 'password', password_confirmation: 'password')
     user.save
 
     #create random user's images. upto 5 images per user
@@ -60,15 +61,13 @@ module RandomizedData
     rand_num.times do
       RandomizedData.create_image user.id
     end
-    # rand_img = RandomizedData.get_random_image
-    # imgObj = Image.new(name: RandomizedData.rand_string(1), description: "Lorem ipsum" + RandomizedData.rand_string(6))
-    # imgObj.image_datafile.attach(io: rand_img, filename: "someName")
-    # imgObj.user_id = user.id
-    # imgObj.save
   end
 end
 
-10.times do RandomizedData.create_image end
+5.times do RandomizedData.create_image end
 5.times do |iter|
-  RandomizedData.create_random_user iter
+  RandomizedData.create_random_user (iter + 1)
 end
+
+# user6 = User.new(email: RandomizedData.email(6), username: ("user" + 6.to_s), password: 'password', password_confirmation: 'password')
+# user7 = User.new(email: RandomizedData.email(7), username: ("user" + 7.to_s), password: 'password', password_confirmation: 'password')

@@ -23,7 +23,7 @@
       <li class="">
         <a href=<%= show_path(current_user) %> class="navbar-img" role="button">
           <%= current_user.username %>
-          <%= image_tag display_avatar(current_user) %>
+          <%= image_tag display_avatar(current_user)%>
         </a>
       </li>
 
@@ -35,3 +35,16 @@
     </ul>
   </div>
 </nav>
+
+<% if flash.any? %>  
+  <div id="alert alert-info alert-dismissable">
+    <a class="panel-close close" data-dismiss="alert">×</a> 
+    <i class="fa fa-coffee"></i>
+    <% flash.each do |key, message| %>      
+      <div class="flash <%= key %>">
+        <!--flash message-->
+        <%= message %>     
+      </div>    
+    <% end %>  
+  </div>
+<% end %>
