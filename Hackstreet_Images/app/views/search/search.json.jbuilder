@@ -1,4 +1,5 @@
 #Created by Michael Hemmelgarn
+# builds a json for use in autocomplete dropdown
 json.users do
   json.array!(@users) do |user|
     json.name user.username

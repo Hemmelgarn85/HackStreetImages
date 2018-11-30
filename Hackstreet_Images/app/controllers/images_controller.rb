@@ -1,8 +1,10 @@
+# created by Ivan Lavrov
 class ImagesController < ApplicationController
 
   def index
     images_to_display = Image.all
 
+    #by Graham Tschieder
     images_to_display.each do |img|
       case img.privacy_level
       when "anon_public"
@@ -58,6 +60,24 @@ class ImagesController < ApplicationController
     redirect_to root_url
   end
 
+  def favorite
+      @image = Image.find(params[:id])
+      @favorite = Favorite.where(image: @image).first
+      if @favorite.nil?
+        current_user.favorites << Favorite.new(image: @image)
+      end
+      redirect_back fallback_location: root_path
+  end
+
+  def unfavorite
+    @image = Image.find(params[:id])
+    @favorite = Favorite.where(image: @image).first
+    if !@favorite.nil?
+      current_user.favorites.delete(@favorite)
+    end
+    redirect_back fallback_location: root_path
+  end
+
 
   private
     def user_post_params
@@ -68,4 +88,5 @@ class ImagesController < ApplicationController
       end
       return user_params
     end
+
 end
