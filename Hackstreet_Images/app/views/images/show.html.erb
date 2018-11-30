@@ -4,36 +4,17 @@
 <%= image_tag @image.image_datafile %>
 <p><%= @image.description %></p>
 
-<div class="container">
-    <div class="row">
-      <% 10.times do %>
-        <div class="col-sm-8">
-            <div class="panel panel-white post panel-shadow">
-                <div class="post-heading">
-                    <div class="pull-left image">
-                        <img src="The-Hackstreet-Boys-Project-6/Hackstreet_Images/app/assets/images/defaultuser.jpg" class="img-circle avatar" alt="user profile image">
-                    </div>
-                    <div class="pull-left meta">
-                        <div class="title h5">
-                            <a href="#"><b>Hackstreet User</b></a>
-                        </div>
-                        <h6 class="text-muted time">1 minute ago</h6>
-                    </div>
-                </div> 
-                <div class="post-description"> 
-                    <p>This is a test comment. Will fill in later.</p>
-                    <div class="stats">
-                        <a href="#" class="btn btn-default stat-item">
-                            <i class="fa fa-thumbs-up icon"></i>2
-                        </a>
-                        <a href="#" class="btn btn-default stat-item">
-                            <i class="fa fa-thumbs-down icon"></i>12
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%end%>
-    </div>
-</div>
+
+<h3>Comments</h3>
+
+<%= form_for [@image, Comment.new] do |f| %>
+    <%= f.text_area :content, placeholder: "Add a comment" %><br/>
+    <%= f.submit "Add Comment" %>
+<% end %>
+
+<ul>
+    <% @image.comments.each do |c|%>
+        <li><%c.content%></li>
+    <%end%>
+</ul>
 

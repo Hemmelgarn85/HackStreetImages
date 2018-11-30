@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'comment_controller/Comments'
   devise_for :users, :controllers => { registrations: 'registrations' }
   get '/user/:id', to: 'users#show', as: 'show'
   #added Michael Hemmelgarn
@@ -8,10 +9,16 @@ Rails.application.routes.draw do
     end
   end
 
+
   resources :users
 
   #added Michael Hemmelgarn
   get :search, controller: :search
+
+
+  resources :images, :except => [:create] do
+    resources :comments
+  end
 
   get '/image/new', to: 'images#new', as: 'image_upload'
   resources :images, :except => [:create]
@@ -20,4 +27,7 @@ Rails.application.routes.draw do
   post '/create', to: 'images#create', as: 'create'
   root 'images#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+
+
 end
