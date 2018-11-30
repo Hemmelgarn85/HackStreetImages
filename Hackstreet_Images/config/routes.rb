@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   #added Michael Hemmelgarn
   get :search, controller: :search
 
+  delete '/image/:id', to: 'image#destroy', as: 'delete_image'
+
 
   resources :images do#, :except => [:create] do
     resources :comments #, only: [:create, :index, :destroy]

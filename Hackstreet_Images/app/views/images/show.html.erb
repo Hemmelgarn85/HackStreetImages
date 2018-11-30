@@ -7,7 +7,7 @@
 </div>
 
 <% if user_signed_in? && @image.user_id == current_user.id %>
-  <%= link_to 'Delete Post', image_path(@image), method: :delete, data: { confirm: 'Are you sure?' } %> 
+  <%= button_to "Delete Post", @image, :method => "delete" %>
 <% end %>
 
 <%flash.each do |name, msg| %>
