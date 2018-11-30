@@ -1,0 +1,14 @@
+<div class="col-sm-8">
+    <div class="panel panel-white post panel-shadow">
+        <div class="post-heading">
+            <div class="pull-left image">
+                <%= image_tag(display_avatar(user_listing),  :class => "img-circle avatar") %>
+            </div>
+            <div class="pull-left meta">
+                <div class="title h5">
+                    <%= link_to user_listing.username, show_path(user_listing.username) %>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
