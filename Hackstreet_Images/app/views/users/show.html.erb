@@ -26,7 +26,10 @@
                 <%= link_to 'Edit Info', edit_user_registration_path %> |
                 <%= link_to 'Delete Account', registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %>
               <% else %>
-                <%= link_to 'Follow', '#' %>
+                <%= form_for(current_user.active_relationships.build) do |f| %>
+                  <div><%= hidden_field_tag :followed_id, @user.id %></div>
+                  <%= f.submit "Follow", class: "btn btn-primary" %>
+                <% end %>
               <% end %>
             </div>
           <% end %>

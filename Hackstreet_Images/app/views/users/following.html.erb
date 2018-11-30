@@ -1,13 +1,2 @@
-<div>
-You have reached this
-</div>
 
-<%= @user.following.each do |follower| %>
-    <div>
-        <p>
-            <%= follower.full_name%>
-            <%= follower.username %> <br/>
-        </p>
-    </div>
-    <hr>
-<% end %>
+<%= render partial: 'user_listing', collection: @user.following %>

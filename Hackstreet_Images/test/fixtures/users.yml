@@ -4,12 +4,12 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-user_one:
+ivan:
   id: 1
   username: Ivan
   email: Ivan@test.com
-  
-user_two:
+
+nick:
   id: 2
-  username: John
- 
+  username: Nick
+  email: test@test.com

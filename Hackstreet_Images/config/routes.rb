@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   # end
 
   get '/user/:username/followers', to: 'users#followers', as: 'followers'
-  get '/user/:username/followers', to: 'users#following', as: 'following'
+  get '/user/:username/following', to: 'users#following', as: 'following'
 
+  resources :relationships,       only: [:create, :destroy]
   # resources :users do
     # member do
     #   get :show
