@@ -52,6 +52,12 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
   end
 
+  def destroy
+    Image.find(params[:id]).destroy
+    flash[:success] = "Photo deleted"
+    redirect_to root_url
+  end
+
 
   private
     def user_post_params
