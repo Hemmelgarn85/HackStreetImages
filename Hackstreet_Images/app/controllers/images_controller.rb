@@ -1,8 +1,10 @@
+# created by Ivan Lavrov
 class ImagesController < ApplicationController
 
   def index
     images_to_display = Image.all
 
+    #by Graham Tschieder
     images_to_display.each do |img|
       case img.privacy_level
       when "anon_public"

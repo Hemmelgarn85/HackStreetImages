@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  # added by Ivan Lavrov
   # follows a user.
   def follow(a_user)
     following << a_user
