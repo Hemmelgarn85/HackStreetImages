@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
             @image = Image.find(params[:image_id])
             @comment = @image.comments.build(comment_params)
             @comment.user = current_user
-            flash[:success] = @comment.user
             
             if @comment.save
                 redirect_back fallback_location: root_path 

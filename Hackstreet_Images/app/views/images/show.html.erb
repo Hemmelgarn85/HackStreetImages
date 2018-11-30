@@ -4,6 +4,8 @@
 <%= image_tag @image.image_datafile %>
 <p><%= @image.description %></p>
 
+<%= link_to 'Delete', image_path(@image), method: :delete, data: { confirm: 'Are you sure?' } %> 
+
 
 <h3>Comments</h3>
 
@@ -34,18 +36,18 @@
       <% @image.comments.each do |com| %>
       <% if !com.content.nil?%>
       <% if !com.content.empty? %>
-      <% if com.user.nil? %>
-      <p> this is nil </p>
-      <% end %>
+      <p><%=User.find(com.user_id).profile_image_datafile%></p>
         <div class="col-sm-8">
             <div class="panel panel-white post panel-shadow">
                 <div class="post-heading">
                     <div class="pull-left image">
-                        <img src="<%=User.find(com.user_id).prof_pic_url%>" class="img-circle avatar" alt="user profile image">
+                        <%= image_tag(display_avatar(User.find(com.user_id)),  :class => "img-circle avatar") %>
+                        <%#= image_tag(User.find(com.user_id).profile_image_datafile, class: "img-circle avatar", alt: "user profile image") %>
+                    
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="#"><b><%=User.find(com.user_id).username%> id</b></a>
+                            <a href="/user/<%=com.user_id%>"><b><%=" by #{User.find(com.user_id).username}"%></b></a>
                         </div>
                         <h6 class="text-muted time"><%=com.created_at.to_formatted_s(:long)%></h6>
                     </div>

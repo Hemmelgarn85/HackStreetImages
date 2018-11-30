@@ -28,8 +28,7 @@
             <div class="row">
               <% if @user == current_user %>
                 <%= link_to 'New Post', image_upload_path %> |
-                <%= link_to 'Edit Info', edit_user_registration_path %> |
-                <%= link_to 'Delete Account', registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %>
+                <%= link_to 'Edit Info', edit_user_registration_path %> 
               <% else %>
                 <%= link_to 'Follow', '#' %>
               <% end %>
@@ -43,7 +42,7 @@
 
 <hr>
 
-<% if @user == current_user %>
+<% if @user.images.count == 0 %>
   <%= "User has no posts!" %>
 <% end %>
 

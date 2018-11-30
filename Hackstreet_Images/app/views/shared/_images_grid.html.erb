@@ -5,7 +5,7 @@
   <div class="grid-item">
     
     <div class="hovering-author">
-      <%= img.name.to_s %> <%= " by author name" if with_author %>
+      <%= img.name.to_s %> <%= " by #{User.find(img.user_id).username unless img.user_id.nil?}"  %>
     </div>
     
     <%= link_to(img) do %>
