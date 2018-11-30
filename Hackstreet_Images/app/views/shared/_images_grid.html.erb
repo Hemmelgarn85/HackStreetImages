@@ -7,7 +7,10 @@
   <div class="grid-item">
     
     <div class="hovering-author">
-      <%= img.name.to_s %> <%= " by #{User.find(img.user_id).username unless img.user_id.nil?}"  %>
+      <% if !img.user_id.nil? && with_author %>
+        <% owner = User.find(img.user_id).username %>
+        <%= img.name.to_s %> <%= link_to(" by #{owner}", show_path(owner))  %>
+      <% end %>
     </div>
     
     <%= link_to(img) do %>
@@ -16,7 +19,7 @@
       </div>
     <% end %>
 
-    <div class="hovering-likes">321 likes</div>
+    <div class="hovering-likes"> <%= num_of_likes img %></div>
   </div>
   
 <% end %>
