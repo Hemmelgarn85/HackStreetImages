@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="profile-row">
     <div class="col-xs-2 col-xs-push-2 img">
-      <%= "Missing image" %>
+      <%= image_tag display_avatar(@user), class: "img-circle"%>
     </div>
     <div class="col-xs-6 col-xs-push-2">
       <div class="row">
@@ -12,7 +12,6 @@
             <span style="font-size:36px">
               <%= "@#{@user.username}" %><br>
             </span>
-
             <strong>Posts: <%= @user.images.length %></strong>
             <strong><%= link_to "Followers: #{@user.followers.length}", followers_path %></strong>
             <strong><%= link_to "Following: #{@user.following.length}", following_path %></strong><br>
@@ -25,11 +24,16 @@
               <% if @user == current_user %>
                 <%= link_to 'New Post', image_upload_path %> |
                 <%= link_to 'Edit Info', edit_user_registration_path %> 
+              <% elsif current_user.following? @user %>
+                <%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+                             html: { method: :delete }) do |f| %>
+                <%= f.submit "Unfollow", class: "btn btn-primary" %>
+                <% end %>
               <% else %>
                 <%= form_for(current_user.active_relationships.build) do |f| %>
                   <div><%= hidden_field_tag :followed_id, @user.id %></div>
-                  <%= f.submit "Follow", class: "btn btn-primary" %>
-                <% end %>
+                <%= f.submit "Follow", class: "btn btn-primary" %>
+              <% end %>
               <% end %>
             </div>
           <% end %>
@@ -45,4 +49,13 @@
   <%= "User has no posts!" %>
 <% end %>
 
+<h3>Posts</h3>
+
 <%= render :partial => 'shared/images_grid', :locals => { image_list: @user.images, with_author: false } %>
+
+<h3>Favorites</h3>
+
+<% img_list = @user.favorites.map do |fav| %>
+<% Image.find(fav.image_id) %>
+<% end %> 
+<%= render :partial => 'shared/images_grid', :locals => { image_list: img_list, with_author: true } %>

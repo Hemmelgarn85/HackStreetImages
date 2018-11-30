@@ -1,3 +1,6 @@
+
+<!--Created and Styled by Michael Hemmelgarn-->
+<!--Edited by Nick Nitta-->
 <nav class="navbar navbar-inverse bs-dark">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -21,7 +24,7 @@
     <% if user_signed_in? %>
       <li class=""><a href=<%= destroy_user_session_path %>>Sign out <span class="sr-only">(current)</span></a></li>
       <li class="">
-        <a href=<%= show_path(current_user) %> class="navbar-img" role="button">
+        <a href=<%= show_path(current_user.username) %> class="navbar-img" role="button">
           <%= current_user.username %>
           <%= image_tag display_avatar(current_user)%>
         </a>

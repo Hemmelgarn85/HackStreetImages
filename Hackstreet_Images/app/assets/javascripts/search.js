@@ -1,3 +1,6 @@
+//Created by Michael Hemmelgarn
+// Javascript function to do search autocomplete dropdown for users and images
+
 document.addEventListener("turbolinks:load", function(){
     $input = $("[data-behavior='autocomplete']")
 
