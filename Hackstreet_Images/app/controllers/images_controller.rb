@@ -1,15 +1,16 @@
+# created by Ivan Lavrov
 class ImagesController < ApplicationController
 
   def index
     images_to_display = Image.all
 
+    #by Graham Tschieder
     images_to_display.each do |img|
       images_to_display -= [img] unless user_has_view_permission(img, current_user)
     end
     # now that we've determined which images to display, display them
     @images = images_to_display 
   end
-
 
   def new
     @image = Image.new
@@ -46,6 +47,7 @@ class ImagesController < ApplicationController
     redirect_to root_url
   end
 
+
   def user_has_view_permission(img, active_user)
     should_display = true #presume we should show it, until proven otherwise
 
@@ -77,6 +79,24 @@ class ImagesController < ApplicationController
     should_display
   end
 
+  def favorite
+      @image = Image.find(params[:id])
+      @favorite = Favorite.where(image: @image).first
+      if @favorite.nil?
+        current_user.favorites << Favorite.new(image: @image)
+      end
+      redirect_back fallback_location: root_path
+  end
+
+  def unfavorite
+    @image = Image.find(params[:id])
+    @favorite = Favorite.where(image: @image).first
+    if !@favorite.nil?
+      current_user.favorites.delete(@favorite)
+    end
+    redirect_back fallback_location: root_path
+  end
+
   private
     def user_post_params
       user_params = params.require(:image).permit(:name, :description, :image_datafile)
@@ -86,4 +106,5 @@ class ImagesController < ApplicationController
       end
       return user_params
     end
+
 end

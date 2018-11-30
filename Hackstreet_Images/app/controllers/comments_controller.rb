@@ -1,3 +1,4 @@
+#Written by Jalen Soat
 class CommentsController < ApplicationController
     #before_action :find_image!
   

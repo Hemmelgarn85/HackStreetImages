@@ -1,5 +1,5 @@
-<!--Created by Graham Tshieder-->
-<!--Styled by Jalen Soat-->
+<%#Page formatted by Jalen Soat and Graham Tschieder and Nick Nitta%>
+
 <h3 class="imagetitle"><%= @image.name %></h3>
 
 <% if user_has_view_permission(@image, current_user) %>
@@ -9,10 +9,28 @@
     <!--<p><%= @image.description %></p!-->
 </div>
 
+<div class="deletefavorite">
 <% if user_signed_in? && @image.user_id == current_user.id %>
-  <%= link_to 'Delete Post', image_path(@image), method: :delete, data: { confirm: 'Are you sure?' } %> 
+  <%= button_to "Delete Post", @image, :method => "delete", :class => "btn btn-secondary " %>
 <% end %>
 
+
+<% if user_signed_in? %>
+    <% if favorite_check current_user, @image %>
+      <%= form_for @image, url: unfav_path(@image), html: {method: "delete"} do |f| %>
+        <%=f.submit "Unfavorite", class: "btn btn-secondary deletefavoritebtn" %>
+      <%end%>
+    <% else %>
+      <%= form_for @image, url: fav_path(@image), html: {method: "post"} do |f| %>
+        <%=f.submit "Favorite", class: "btn btn-secondary deletefavoritebtn" %>
+      <%end%>
+    <% end %>
+
+
+<% end %>
+</div>
+
+<%#Written and implemented by Jalen Soat%>
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
@@ -48,11 +66,6 @@
                 </div> 
                 <div class="post-description"> 
                     <p><%=com.content%></p>
-                    <div class="stats">
-                        <a href="#" class="btn btn-default stat-item">
-                            <i class="fa fa-thumbs-up icon"></i>2
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
