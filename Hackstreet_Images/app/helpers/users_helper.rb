@@ -3,7 +3,7 @@ module UsersHelper
         if user.profile_image_datafile.attached?
           user.profile_image_datafile.variant(resize: '150x150x')
         else
-          'defaultuser.png'
+          'defaultuser.jpg'
         end
     end
 end
