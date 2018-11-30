@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   end
 
   get '/image/new', to: 'images#new', as: 'image_upload'
+  get '/image/delete', to: 'images#destroy', as: 'delete'
   # resources :images, :except => [:create]
   # resources :images
   # get '/images', to: 'images#index', as: 'images'

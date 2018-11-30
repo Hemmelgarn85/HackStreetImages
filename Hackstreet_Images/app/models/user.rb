@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
   validates :username, uniqueness: true       
   has_one_attached :profile_image_datafile
-  has_many :images
-  has_many :comments
+  has_many :images, dependent: :destroy
+  has_many :comments, dependent: :destroy
 end
