@@ -4,8 +4,9 @@
 <%= image_tag @image.image_datafile %>
 <p><%= @image.description %></p>
 
-<%= link_to 'Delete', image_path(@image), method: :delete, data: { confirm: 'Are you sure?' } %> 
-
+<% if @image.user_id == current_user.id %>
+  <%= link_to 'Delete Post', image_path(@image), method: :delete, data: { confirm: 'Are you sure?' } %> 
+<% end %>
 
 <h3>Comments</h3>
 
@@ -47,7 +48,7 @@
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="/user/<%=com.user_id%>"><b><%=" by #{User.find(com.user_id).username}"%></b></a>
+                            <a href="/user/<%=com.user_id%>"><b><%=User.find(com.user_id).username%></b></a>
                         </div>
                         <h6 class="text-muted time"><%=com.created_at.to_formatted_s(:long)%></h6>
                     </div>

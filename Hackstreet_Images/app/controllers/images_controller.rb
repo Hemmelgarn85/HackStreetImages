@@ -23,8 +23,8 @@ class ImagesController < ApplicationController
         # Privacy indeterminable. Just show it.
       end
     end
-
-    @images = images_to_display
+    # now that we've determined which images to display, display them
+    @images = images_to_display 
   end
 
 
