@@ -58,6 +58,24 @@ class ImagesController < ApplicationController
     redirect_to root_url
   end
 
+  def favorite
+      @image = Image.find(params[:id])
+      @favorite = Favorite.where(image: @image).first
+      if @favorite.nil?
+        current_user.favorites << Favorite.new(image: @image)
+      end
+      redirect_back fallback_location: root_path
+  end
+
+  def unfavorite
+    @image = Image.find(params[:id])
+    @favorite = Favorite.where(image: @image).first
+    if !@favorite.nil?
+      current_user.favorites.delete(@favorite)
+    end
+    redirect_back fallback_location: root_path
+  end
+
 
   private
     def user_post_params
@@ -68,4 +86,5 @@ class ImagesController < ApplicationController
       end
       return user_params
     end
+
 end

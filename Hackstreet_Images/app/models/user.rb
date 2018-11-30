@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_one_attached :profile_image_datafile
   has_many :images, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
 end

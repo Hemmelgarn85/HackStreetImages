@@ -15,13 +15,19 @@ Rails.application.routes.draw do
   #added Michael Hemmelgarn
   get :search, controller: :search
 
+  post 'image/:id/favorite', to: 'images#favorite', as: 'fav'
+  delete 'image/:id/unfavorite', to: 'images#unfavorite', as: 'unfav'
 
+  #Added by Jalen Soat
   resources :images do#, :except => [:create] do
     resources :comments #, only: [:create, :index, :destroy]
+    #resources :favorites, only: [:create, :destroy]
   end
 
+  #Added by Jalen Soat
   resources :users do
     resources :comments
+    resources :favorites
   end
 
   get '/image/new', to: 'images#new', as: 'image_upload'

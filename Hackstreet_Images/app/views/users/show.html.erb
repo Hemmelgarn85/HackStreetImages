@@ -46,4 +46,13 @@
   <%= "User has no posts!" %>
 <% end %>
 
-<%= render :partial => 'shared/images_grid', :locals => { image_list: @user.images, with_author: false } %>
+<h3>Posts</h3>
+
+<%= render :partial => 'shared/images_grid', :locals => { image_list: @user.images, with_author: true } %>
+
+<h3>Favorites</h3>
+
+<% img_list = @user.favorites.map do |fav| %>
+<% Image.find(fav.image_id) %>
+<% end %> 
+<%= render :partial => 'shared/images_grid', :locals => { image_list: img_list, with_author: true } %>

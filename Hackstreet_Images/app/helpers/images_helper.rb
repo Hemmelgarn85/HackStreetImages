@@ -1,3 +1,4 @@
+#Written by Jalen Soat
 module ImagesHelper
     def display_avatar(user)
         if user.profile_image_datafile.attached?
