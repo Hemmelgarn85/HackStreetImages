@@ -14,6 +14,8 @@ class ImagesController < ApplicationController
       when "signed_in_private"
         if user_signed_in?
           # we determine if logged in user has permission to see this pic
+          image_poster = User.find(img.user_id)
+          images_to_display -= [img] unless current_user.following? image_poster
         else
           images_to_display -= [img] # don't let anon users see private pics of signed in users
         end
@@ -33,6 +35,11 @@ class ImagesController < ApplicationController
   end
 
   def create
+    if user_post_params[:image_datafile].nil?
+      flash[:nofile] = "Please attach a file"
+      redirect_to image_upload_path and return
+    end
+
     if user_signed_in?
       #add an image to current user
       @image = current_user.images.build(user_post_params)

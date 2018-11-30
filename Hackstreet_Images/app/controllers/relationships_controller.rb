@@ -8,14 +8,13 @@ class RelationshipsController < ApplicationController
     end
 
     def destroy
-        user = Relationship.find(allowed_params).followed
+        user = Relationship.find(params[:id]).followed
         current_user.unfollow(user)
         redirect_to show_path(user.username)
     end
 
-    private
-        def allowed_params
-            params.require(:relationship).permit(:follower, :followed)
-        end
-
+    # private
+    #     def allowed_params
+    #         params.require(:relationship).permit(:follower, :followed)
+    #     end
 end
