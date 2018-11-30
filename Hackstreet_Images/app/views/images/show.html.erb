@@ -1,33 +1,34 @@
 <%#Page formatted by Jalen Soat and Graham Tschieder and Nick Nitta%>
 
 <h3 class="imagetitle"><%= @image.name %></h3>
+
+<% if user_has_view_permission(@image, current_user) %>
+
 <div class = "imageframe">
     <%= image_tag @image.image_datafile, :class => "imagedisplay" %>
     <!--<p><%= @image.description %></p!-->
 </div>
 
+<div class="deletefavorite">
 <% if user_signed_in? && @image.user_id == current_user.id %>
-  <%= button_to "Delete Post", @image, :method => "delete" %>
+  <%= button_to "Delete Post", @image, :method => "delete", :class => "btn btn-secondary " %>
 <% end %>
-
-<%flash.each do |name, msg| %>
-    <p><%=msg%></p><br/>
-<%end%>
 
 
 <% if user_signed_in? %>
     <% if favorite_check current_user, @image %>
       <%= form_for @image, url: unfav_path(@image), html: {method: "delete"} do |f| %>
-        <%=f.submit "unfavorite", class: "btn-grey" %>
+        <%=f.submit "Unfavorite", class: "btn btn-secondary deletefavoritebtn" %>
       <%end%>
     <% else %>
       <%= form_for @image, url: fav_path(@image), html: {method: "post"} do |f| %>
-        <%=f.submit "favorite", class: "btn-grey" %>
+        <%=f.submit "Favorite", class: "btn btn-secondary deletefavoritebtn" %>
       <%end%>
     <% end %>
 
 
 <% end %>
+</div>
 
 <%#Written and implemented by Jalen Soat%>
 <div class="container">
@@ -73,3 +74,7 @@
         <%end%>
     </div>
 </div>
+
+<%else%>
+   <strong><%= "You must follow this user to view their private images" %></strong>
+<%end%>
