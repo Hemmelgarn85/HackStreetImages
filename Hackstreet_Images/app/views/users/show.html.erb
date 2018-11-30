@@ -11,7 +11,7 @@
               <%= "@#{@user.username}" %><br>
             </span>
             <strong>Posts:</strong>
-            <%= 10 %>
+            <%= @user.images.count %>
             <a href=<%= "#" %>>
               <strong>Followers:</strong>
               <%= 123 %>
@@ -42,5 +42,9 @@
 </div>
 
 <hr>
+
+<% if @user == current_user %>
+  <%= "User has no posts!" %>
+<% end %>
 
 <%= render :partial => 'shared/images_grid', :locals => { image_list: @user.images, with_author: false } %>

@@ -7,12 +7,53 @@
 
 <h3>Comments</h3>
 
-<%= form_for [@image, Comment.new] do |f| %>
-    <%= f.text_area :content, placeholder: "Add a comment" %><br/>
-    <%= f.submit "Add Comment" %>
-<% end %>
 
+<<<<<<< HEAD
 <ul>
     
 </ul>
+=======
+<div class="container">
+    <div class="row">
+        
+        <div class="col-sm-8">
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <%= form_for [@image, @image.comments.build] do |f| %>
+                        <%= f.text_area :content, placeholder: "Add a comment" %><br/>
+                        <%= f.submit "Add Comment" %>
+                    <%end%>
+>>>>>>> master
 
+                </div>
+            </div>
+        </div>
+        
+
+      <% @image.comments.each do |com| %>
+        <div class="col-sm-8">
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="The-Hackstreet-Boys-Project-6/Hackstreet_Images/app/assets/images/defaultuser.jpg" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>Test User</b></a>
+                        </div>
+                        <h6 class="text-muted time"><%#=com.created_at.strftime("%B %d %Y, %l:%M%P")%>time</h6>
+                    </div>
+                </div> 
+                <div class="post-description"> 
+                    <p><%=com.content%></p>
+                    <div class="stats">
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-up icon"></i>2
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%end%>
+    </div>
+</div>

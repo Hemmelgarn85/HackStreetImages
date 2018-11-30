@@ -4,6 +4,11 @@
       <%= link_to "LOGO_HERE", root_path, id: "placeholder_logo" %>
     </div>
 
+    <%= form_with url: search_path, local: true, method: :get, html: { class: "" } do |form| %>
+      <%= form.text_field :q, placeholder: "Search", data: { behavior: "autocomplete" }, class: "form-control mr-sm-2" %>
+      <%= form.button "Search" %>
+    <% end %>
+
     <ul class="nav navbar-nav navbar-right">
       <li><%= link_to "Feed", images_path %></li>
       <li><%= link_to "New Post", image_upload_path %> 
