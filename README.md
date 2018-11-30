@@ -45,3 +45,13 @@ Also list if people worked together (pair programmed) on a particular section.
 - gem 'bootstrap-sass', '3.3.7'
 - gem 'sprockets-rails', '~> 3.2.1'
 - gem 'ransack', '~> 2.1'
+
+###Testing
+**Unit**
+  -Some unit tests were created to ensure specific moduals worked as intenteded. To run these tests type rails tests.
+**Integration**
+  -For integration testing, when moduals were completed that were related, they were grouped together and ran while being
+  monitered to ensure they were working as intended.
+**System**
+  -To ensure the entire website worked, the website was extesively browsed and used in a destructive manner. This helped us
+  ensure that the entire website cooperated and worked nicely from a users perspective.
