@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  #by Nick Nitta
   validates :username, uniqueness: true
   validates_length_of :username, :minimum => 3       
   has_one_attached :profile_image_datafile

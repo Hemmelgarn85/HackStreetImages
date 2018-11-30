@@ -50,4 +50,14 @@ module ImagesHelper
 
       return false
     end
+
+    #by Nick Nitta
+    #find number of times image was favorited
+    def num_of_likes img
+      cnt = Favorite.where(image_id: img.id).length
+      if cnt == 0
+        return "No one favorited it yet"
+      end
+      cnt.to_s + " likes"
+    end
 end

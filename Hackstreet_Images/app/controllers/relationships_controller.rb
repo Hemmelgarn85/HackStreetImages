@@ -1,4 +1,4 @@
-#Created by Nick Nitta
+#Added by Nick Nitta
 class RelationshipsController < ApplicationController
 
     #action to create following relationship

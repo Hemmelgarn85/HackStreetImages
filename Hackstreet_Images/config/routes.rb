@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   get '/user/:username', to: 'users#show', as: 'show'
 
+  #added by Nick Nitta
   get '/user/:username/followers', to: 'users#followers', as: 'followers'
   get '/user/:username/following', to: 'users#following', as: 'following'
 
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   #added Michael Hemmelgarn
   get :search, controller: :search
 
+  #added by Ivan Lavrov
   post 'image/:id/favorite', to: 'images#favorite', as: 'fav'
   delete 'image/:id/unfavorite', to: 'images#unfavorite', as: 'unfav'
 
@@ -27,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   get '/image/new', to: 'images#new', as: 'image_upload'
-
+  #added by Ivan Lavrov
   post '/create', to: 'images#create', as: 'create'
   root 'images#index', as: 'root'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

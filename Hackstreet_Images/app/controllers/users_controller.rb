@@ -28,6 +28,7 @@ class UsersController < ApplicationController
       end
     end
 
+    #by Ivan Lavrov
     def set_user_else_redirect
       @user = resolve_correct_user params[:username]
       if @user == :empty
