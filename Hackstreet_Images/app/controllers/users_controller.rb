@@ -9,6 +9,7 @@ class UsersController < ApplicationController
         end
     end
 
+    # should only reach edit when you're trying to edit your own acct
     def edit
       @user = current_user
     end

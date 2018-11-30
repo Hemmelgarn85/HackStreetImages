@@ -1,33 +1,29 @@
-<p>Some Image</p>
-
 <h3 class="imagetitle"><%= @image.name %></h3>
-<%= image_tag @image.image_datafile %>
-<p><%= @image.description %></p>
+<div class = "imageframe">
+    <%= image_tag @image.image_datafile, :class => "imagedisplay" %>
+    <!--<p><%= @image.description %></p!-->
+</div>
 
-<%= link_to 'Delete', image_path(@image), method: :delete, data: { confirm: 'Are you sure?' } %> 
-
-
-<h3>Comments</h3>
+<% if @image.user_id == current_user.id %>
+  <%= link_to 'Delete Post', image_path(@image), method: :delete, data: { confirm: 'Are you sure?' } %> 
+<% end %>
 
 <%flash.each do |name, msg| %>
     <p><%=msg%></p><br/>
 <%end%>
 
-<ul>
-    
-</ul>
+
 <div class="container">
     <div class="row">
         
         <div class="col-sm-8">
             <div class="panel panel-white post panel-shadow">
-                <div class="post-heading">
-                    
-                    <%= form_for [@image, @image.comments.build] do |f| %>
-                        <%= f.text_area :content, placeholder: "Add a comment" %><br/>
-                        <%= f.submit "Add Comment" %>
-                    <%end%>
-
+                <div class="post-heading-2">
+                        <%= form_for [@image, @image.comments.build] do |f| %>
+                            <%= f.text_area :content, placeholder: "Add a comment", class: "status-upload" %><br/>
+                            <%= f.submit "Add Comment", class: "btn-green" %>
+                            <%end%>
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,7 +32,6 @@
       <% @image.comments.each do |com| %>
       <% if !com.content.nil?%>
       <% if !com.content.empty? %>
-      <p><%=User.find(com.user_id).profile_image_datafile%></p>
         <div class="col-sm-8">
             <div class="panel panel-white post panel-shadow">
                 <div class="post-heading">
@@ -47,7 +42,7 @@
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="/user/<%=com.user_id%>"><b><%=" by #{User.find(com.user_id).username}"%></b></a>
+                            <a href="/user/<%=com.user_id%>"><b><%=User.find(com.user_id).username%></b></a>
                         </div>
                         <h6 class="text-muted time"><%=com.created_at.to_formatted_s(:long)%></h6>
                     </div>
