@@ -58,6 +58,6 @@ module ImagesHelper
       if cnt == 0
         return "No one favorited it yet"
       end
-      cnt.to_s + " likes"
+      cnt.to_s + " like(s)"
     end
 end
