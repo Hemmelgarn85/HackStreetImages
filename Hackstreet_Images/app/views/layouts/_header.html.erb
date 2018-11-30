@@ -17,6 +17,7 @@
       <%= form.text_field :q, placeholder: "Search", data: { behavior: "autocomplete" }, class: "search-box" %>
     <% end %>
     <ul class="nav navbar-nav navbar-right">
+
     <% if user_signed_in? %>
       <li class=""><a href=<%= destroy_user_session_path %>>Sign out <span class="sr-only">(current)</span></a></li>
       <li class="">
@@ -30,6 +31,7 @@
       <li class=""><a href=<%= new_user_session_path %>>Sign In <span class="sr-only">(current)</span></a></li>
       <li class=""><a href=<%= new_user_registration_path %>>Sign Up <span class="sr-only">(current)</span></a></li>
     <% end %>
+
     </ul>
   </div>
 </nav>

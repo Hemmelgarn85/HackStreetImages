@@ -42,6 +42,11 @@ module RandomizedData
     imgObj = Image.new(name: RandomizedData.rand_string(1), description: "Lorem ipsum" + RandomizedData.rand_string(6))
     imgObj.image_datafile.attach(io: rand_img, filename: "someName")
     imgObj.user_id = with_user_id if !with_user_id.nil?
+    if with_user_id.nil?
+      imgObj.privacy_level = rand(0..1)
+    else
+      imgObj.privacy_level = rand(2..3)
+    end
     imgObj.save
   end
 
