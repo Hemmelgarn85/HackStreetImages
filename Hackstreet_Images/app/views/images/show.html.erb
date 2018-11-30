@@ -11,6 +11,9 @@
     <p><%=msg%></p><br/>
 <%end%>
 
+<ul>
+    
+</ul>
 <div class="container">
     <div class="row">
         
@@ -21,14 +24,6 @@
                     <%= form_for [@image, @image.comments.build] do |f| %>
                         <%= f.text_area :content, placeholder: "Add a comment" %><br/>
                         <%= f.submit "Add Comment" %>
-                    <%end%>
-                    
-                    <% if false %>
-                    <%= form_for @image.comments do |f| %>
-
-                        <%= f.text_field :content, placeholder: "Write a comment" %>
-                        <%= f.submit "Submit" %>
-                    <% end %>
                     <%end%>
 
                 </div>
