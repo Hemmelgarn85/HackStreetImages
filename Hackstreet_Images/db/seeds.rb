@@ -47,7 +47,7 @@ module RandomizedData
 
   def RandomizedData.create_random_user num
     # Devise.include_helpers(Devise::Controllers)
-    user = User.new(email: RandomizedData.email(num), username: RandomizedData.rand_string(1), password: 'password', password_confirmation: 'password')
+    user = User.new(email: RandomizedData.email(num), username: ("user" + num.to_s), password: 'password', password_confirmation: 'password')
     user.save
 
     #create random user's images. upto 5 images per user

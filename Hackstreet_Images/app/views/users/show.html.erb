@@ -12,7 +12,7 @@
 <div class="container-fluid">
   <div class="profile-row">
     <div class="col-xs-2 col-xs-push-2 img">
-      <%= image_tag display_avatar(@user)%>
+      
     </div>
     <div class="col-xs-6 col-xs-push-2">
       <div class="row">
@@ -23,12 +23,12 @@
             </span>
             <strong>Posts:</strong>
             <%= 10 %>
-            <%= link_to index_path %>
+            <%= link_to root_path %>
               <strong>Followers:</strong>
               <%= @user.followers %>
-            <%= link_to index_path %>
+            <%= link_to root_path %>
               <strong>Following:</strong>
-              <%= @user.followeds %><br>
+              <%= @user.following %><br>
             <strong><%= "#{@user.full_name}" %></strong>
             <%= "#{@user.bio}" %>
           </p>
