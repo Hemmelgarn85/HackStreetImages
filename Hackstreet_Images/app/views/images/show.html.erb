@@ -7,6 +7,9 @@
 
 <h3>Comments</h3>
 
+<%flash.each do |name, msg| %>
+    <p><%=msg%></p><br/>
+<%end%>
 
 <div class="container">
     <div class="row">
@@ -14,9 +17,18 @@
         <div class="col-sm-8">
             <div class="panel panel-white post panel-shadow">
                 <div class="post-heading">
+                    
                     <%= form_for [@image, @image.comments.build] do |f| %>
                         <%= f.text_area :content, placeholder: "Add a comment" %><br/>
                         <%= f.submit "Add Comment" %>
+                    <%end%>
+                    
+                    <% if false %>
+                    <%= form_for @image.comments do |f| %>
+
+                        <%= f.text_field :content, placeholder: "Write a comment" %>
+                        <%= f.submit "Submit" %>
+                    <% end %>
                     <%end%>
 
                 </div>
@@ -25,17 +37,22 @@
         
 
       <% @image.comments.each do |com| %>
+      <% if !com.content.nil?%>
+      <% if !com.content.empty? %>
+      <% if com.user.nil? %>
+      <p> this is nil </p>
+      <% end %>
         <div class="col-sm-8">
             <div class="panel panel-white post panel-shadow">
                 <div class="post-heading">
                     <div class="pull-left image">
-                        <img src="The-Hackstreet-Boys-Project-6/Hackstreet_Images/app/assets/images/defaultuser.jpg" class="img-circle avatar" alt="user profile image">
+                        <img src="<%=User.find(com.user_id).prof_pic_url%>" class="img-circle avatar" alt="user profile image">
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="#"><b>Test User</b></a>
+                            <a href="#"><b><%=User.find(com.user_id).username%> id</b></a>
                         </div>
-                        <h6 class="text-muted time"><%#=com.created_at.strftime("%B %d %Y, %l:%M%P")%>time</h6>
+                        <h6 class="text-muted time"><%=com.created_at.to_formatted_s(:long)%></h6>
                     </div>
                 </div> 
                 <div class="post-description"> 
@@ -48,6 +65,8 @@
                 </div>
             </div>
         </div>
+        <%end%>
+        <%end%>
         <%end%>
     </div>
 </div>
