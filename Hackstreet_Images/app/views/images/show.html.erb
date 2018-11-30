@@ -34,9 +34,6 @@
       <% @image.comments.each do |com| %>
       <% if !com.content.nil?%>
       <% if !com.content.empty? %>
-      <% if com.user.nil? %>
-      <p> this is nil </p>
-      <% end %>
         <div class="col-sm-8">
             <div class="panel panel-white post panel-shadow">
                 <div class="post-heading">
@@ -45,7 +42,7 @@
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="#"><b><%=User.find(com.user_id).username%> id</b></a>
+                            <a href="#"><b><%=User.find(com.user_id).username%></b></a>
                         </div>
                         <h6 class="text-muted time"><%=com.created_at.to_formatted_s(:long)%></h6>
                     </div>
