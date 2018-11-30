@@ -16,13 +16,13 @@ Also list if people worked together (pair programmed) on a particular section.
 - Ivan Lavrov: User/Image generation, image storing, image display, followers
 - Nick Nitta: Followers, overall styling
 
-###Code Organization/Structure
+### Code Organization/Structure
 - This code is structured in the style of the standard rails paradigm. This is a standard model-view-controller format, which each part communicating throughout the code. All models are found in the "models" folder, all view are found in the "views" folder, and all controllers are found in the "controllers" folder. Bootstrap was used in styling to make the project look cleaner, and devise was used to assist with user log in / account creation.  
 
-###How to Run Code
+### How to Run Code
 - Ensure you are in the "Hackstreet_Images" directory. Then, install all gems using the "bundle install" command. To run the server, use the "rails s" command. Once the server is running, on your browser of choice, go to "localhost:3000", and the website will run.
 
-###Gems Required
+### Gems Required
 - gem 'rails', '~> 5.2.1'
 - gem 'sqlite3'
 - gem 'puma', '~> 3.11'
@@ -46,7 +46,7 @@ Also list if people worked together (pair programmed) on a particular section.
 - gem 'sprockets-rails', '~> 3.2.1'
 - gem 'ransack', '~> 2.1'
 
-###Testing
+### Testing
 **Unit**
   -Some unit tests were created to ensure specific moduals worked as intenteded. To run these tests type rails tests.
 **Integration**
