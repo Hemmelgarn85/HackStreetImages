@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :images, dependent: :destroy # if the use is deleted, then delete all associated images and comments
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   has_many :active_relationships,  class_name:  "Relationship",
                                       foreign_key: "follower_id",
