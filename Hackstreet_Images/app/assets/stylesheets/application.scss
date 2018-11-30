@@ -19,9 +19,14 @@
 @import "bootstrap-sprockets";
 
 body {
-  padding-top: 40px;
+  padding-top: 0px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background-image: url("background.jpg");
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .form-signin {
@@ -166,4 +171,10 @@ body {
 .imagetitle {
   font-size: 50px;
   padding-bottom: 20px;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/assets/glyphicons-halflings-regular.eot');
+  src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
