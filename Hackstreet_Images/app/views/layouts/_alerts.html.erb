@@ -1,3 +1,9 @@
 <%-# partial for rails alerts -%>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% if flash.any? %>  
+  <div class="alert alert-info alert-dismissable">
+    <a class="panel-close close" data-dismiss="alert">×</a> 
+    <% flash.each do |key, message| %>
+      <p class="notice alert"><%= message %></p>
+    <% end %>
+  </div>
+<% end %>

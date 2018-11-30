@@ -38,16 +38,3 @@
     </ul>
   </div>
 </nav>
-
-<% if flash.any? %>  
-  <div id="alert alert-info alert-dismissable">
-    <a class="panel-close close" data-dismiss="alert">×</a> 
-    <i class="fa fa-coffee"></i>
-    <% flash.each do |key, message| %>      
-      <div class="flash <%= key %>">
-        <!--flash message-->
-        <%= message %>     
-      </div>    
-    <% end %>  
-  </div>
-<% end %>
