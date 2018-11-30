@@ -24,8 +24,7 @@
             <div class="row">
               <% if @user == current_user %>
                 <%= link_to 'New Post', image_upload_path %> |
-                <%= link_to 'Edit Info', edit_user_registration_path %> |
-                <%= link_to 'Delete Account', registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %>
+                <%= link_to 'Edit Info', edit_user_registration_path %> 
               <% else %>
                 <%= form_for(current_user.active_relationships.build) do |f| %>
                   <div><%= hidden_field_tag :followed_id, @user.id %></div>
@@ -42,7 +41,7 @@
 
 <hr>
 
-<% if @user == current_user %>
+<% if @user.images.count == 0 %>
   <%= "User has no posts!" %>
 <% end %>
 

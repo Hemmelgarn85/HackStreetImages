@@ -23,8 +23,12 @@ Rails.application.routes.draw do
   get :search, controller: :search
 
 
-  resources :images, :except => [:create] do
+  resources :images do#, :except => [:create] do
     resources :comments #, only: [:create, :index, :destroy]
+  end
+
+  resources :users do
+    resources :comments
   end
 
   get '/image/new', to: 'images#new', as: 'image_upload'

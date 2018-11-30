@@ -42,11 +42,12 @@
     <![endif]-->
   </head>
 
-  <body>
-    <%= render 'layouts/alerts' %>
+  <body class="<%= params[:action] %>">
+
 
     <div class="container">
       <%= render 'layouts/header' %>
+      <%= render 'layouts/alerts' %>
       <%= yield %>
     </div> <!-- /container -->
 

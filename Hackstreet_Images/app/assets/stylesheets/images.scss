@@ -13,10 +13,11 @@
     height: 360px;
     width: 360px;
     position: relative;
+    background-color: hsla(0, 0%, 100%, 0.31);
 
     $hovercolor: rgba(
       $color: #fdfdfd,
-      $alpha: 0.7
+      $alpha: 0.45
     );
 
     &:hover {
