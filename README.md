@@ -14,7 +14,7 @@ Also list if people worked together (pair programmed) on a particular section.
 - Graham Tschieder: Feed filtering, privacy, user information / page
 - Michael: User/Image Searching, overall styling
 - Ivan Lavrov: User/Image generation, image storing, image display, followers
-- Nick Nitta: Followers, overall styling
+- Nick Nitta: Followers, overall styling, likes count and author links
 
 ### Code Organization/Structure
 - This code is structured in the style of the standard rails paradigm. This is a standard model-view-controller format, which each part communicating throughout the code. All models are found in the "models" folder, all view are found in the "views" folder, and all controllers are found in the "controllers" folder. Bootstrap was used in styling to make the project look cleaner, and devise was used to assist with user log in / account creation.  
