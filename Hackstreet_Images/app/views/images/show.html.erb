@@ -6,8 +6,9 @@
     <!--<p><%= @image.description %></p!-->
 </div>
 
+<div class="deletefavorite">
 <% if user_signed_in? && @image.user_id == current_user.id %>
-  <%= button_to "Delete Post", @image, :method => "delete" %>
+  <%= button_to "Delete Post", @image, :method => "delete", :class => "btn btn-secondary " %>
 <% end %>
 
 <%flash.each do |name, msg| %>
@@ -18,17 +19,17 @@
 <% if user_signed_in? %>
     <% if favorite_check current_user, @image %>
       <%= form_for @image, url: unfav_path(@image), html: {method: "delete"} do |f| %>
-        <%=f.submit "unfavorite", class: "btn-grey" %>
+        <%=f.submit "Unfavorite", class: "btn btn-secondary deletefavoritebtn" %>
       <%end%>
     <% else %>
       <%= form_for @image, url: fav_path(@image), html: {method: "post"} do |f| %>
-        <%=f.submit "favorite", class: "btn-grey" %>
+        <%=f.submit "Favorite", class: "btn btn-secondary deletefavoritebtn" %>
       <%end%>
     <% end %>
 
 
 <% end %>
-
+</div>
 <%#Written and implemented by Jalen Soat%>
 <div class="container">
     <div class="row">
