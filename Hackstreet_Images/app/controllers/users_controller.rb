@@ -36,11 +36,15 @@ class UsersController < ApplicationController
         redirect_to root_path
       end
 
-      images_to_display = @user.images
-      images_to_display.each do |img|
-        images_to_display -= [img] unless user_has_view_permission(img, current_user)
+      # when viewing a user's page, always render thumbnails for their public images
+      images_to_display = Array.new   
+      images_to_display += @user.images.select { |img| img.signed_in_public? }
+
+      # only render thumbnails for private images if signed in user follows them
+      if user_signed_in? && current_user.following?(@user)
+        images_to_display += @user.images.select { |img| img.signed_in_private? }
       end
-      # now that we've determined which images to display, display them
+
       @images = images_to_display
     end
 
@@ -54,37 +58,6 @@ class UsersController < ApplicationController
 
     def following
       set_user_else_redirect
-    end
-
-    def user_has_view_permission(img, active_user)
-      should_display = true #presume we should show it, until proven otherwise
-
-      if (!active_user.nil? && active_user.id == img.user_id)
-        return should_display
-      end
-
-      case img.privacy_level
-      when "anon_public"
-        if active_user
-          should_display = false # if the user is signed in, don't show anon pics
-        end
-      when "anon_private"
-        should_display = false # never display anon pics
-      when "signed_in_private"
-        if active_user
-          # we determine if logged in user has permission to see this pic
-          image_poster = User.find(img.user_id)
-          should_display = false unless current_user.following? image_poster
-        else
-          should_display = false # don't let anon users see private pics of signed in users
-        end
-      when "signed_in_public" 
-        # always display these, uploader designated them as public
-      else
-        # Privacy indeterminable. Just show it.
-      end
-  
-      should_display
     end
 
     private

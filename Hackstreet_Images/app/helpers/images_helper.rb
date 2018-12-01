@@ -9,6 +9,7 @@ module ImagesHelper
         end
     end 
 
+    # helper to determine whether the current user 
     def user_has_view_permission(img, active_user)
       should_display = true #presume we should show it, until proven otherwise
   
@@ -18,11 +19,9 @@ module ImagesHelper
   
       case img.privacy_level
       when "anon_public"
-        if active_user
-          should_display = false # if the user is signed in, don't show anon pics
-        end
+        should_display = true # we should display anon_public if the user uses the direct link to it
       when "anon_private"
-        should_display = false # never display anon pics
+        should_display = true # we should display anon_private if the user uses the direct link to it
       when "signed_in_private"
         if active_user
           # we determine if logged in user has permission to see this pic
@@ -32,7 +31,7 @@ module ImagesHelper
           should_display = false # don't let anon users see private pics of signed in users
         end
       when "signed_in_public" 
-        # always display these, uploader designated them as public
+        should_display = true # we should display anon_private if the user uses the direct link to it
       else
         # Privacy indeterminable. Just show it.
       end

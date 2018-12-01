@@ -1,1 +1,4 @@
+<% if @images.count == 0 %>
+  <%= "No posts to view! Begin following users to see pictures in your feed." %>
+<% end %>
 <%= render :partial => 'shared/images_grid', :locals => { image_list: @images, with_author: true } %>
