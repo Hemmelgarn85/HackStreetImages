@@ -1,6 +1,10 @@
 # Project 6
 ### Ruby on Rails Project
 
+Comment for Those viewing commits.
+I (Michael Hemmelgarn) used to have two github accounts. I did quite a few commits on this repo with that account
+but i have since deleted it to merge the two accounts. That is why it would appear I am missing commits.
+
 ### Roles
 * Overall Project Manager: Michael Hemmelgarn
 * Coding Manager: Jalen Soat
