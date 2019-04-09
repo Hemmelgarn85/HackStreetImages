@@ -12,8 +12,7 @@ but i have since deleted it to merge the two accounts. That is why it would appe
 * Documentation: Ivan Lavrov
 
 ### Contributions
-Please list who did what for each part of the project.
-Also list if people worked together (pair programmed) on a particular section.
+
 - Jalen Soat: Comments, overall styling
 - Graham Tschieder: Feed filtering, privacy, user information / page
 - Michael: User/Image Searching, overall styling
